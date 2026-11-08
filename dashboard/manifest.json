@@ -1,0 +1,11 @@
+{
+  "name": "calendar-hermes",
+  "label": "Calendar Local",
+  "description": "Multi-calendar scheduling with recurrence and agent assignment.",
+  "icon": "CalendarDays",
+  "version": "0.1.0",
+  "tab": { "path": "/calendar-hermes", "position": "after:skills" },
+  "slots": [],
+  "entry": "dist/index.js",
+  "api": "plugin_api.py"
+}

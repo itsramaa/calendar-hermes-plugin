@@ -1,0 +1,21 @@
+[project]
+name = "hermes-plugin-calendar-hermes"
+version = "0.1.0"
+description = "Hermes dashboard plugin: multi-calendar engine with recurrence and agent tools"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+# Installed into the Hermes venv by `hermes plugins install` / `enable` and re-applied after
+# every `hermes update`. Keep upper bounds loose: Hermes pins its own deps exactly and refuses a
+# plugin whose requirements cannot resolve against them.
+dependencies = [
+    "psycopg[binary]>=3.1",
+    "psycopg-pool>=3.1",
+    "python-dateutil>=2.9",
+    "tzdata",
+]
+
+# No dependency groups or extras here: Hermes locks this file as a member of a uv workspace whose
+# root project is hermes-agent, and uv parses every member's groups while locking.
+
+[tool.uv]
+package = false

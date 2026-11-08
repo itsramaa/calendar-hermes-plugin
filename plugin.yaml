@@ -1,0 +1,18 @@
+name: calendar-hermes
+version: 0.1.0
+description: "Multi-calendar engine with recurrence, agent tools, and dashboard UI."
+author: "Hermes"
+provides_tools:
+  - calendar_list_calendars
+  - calendar_create_calendar
+  - calendar_delete_calendar
+  - calendar_list_events
+  - calendar_get_event
+  - calendar_create_event
+  - calendar_update_event
+  - calendar_delete_event
+  - calendar_search_events
+  - calendar_check_availability
+  - calendar_add_exception
+  - calendar_assign_agent
+provides_dashboard: true
