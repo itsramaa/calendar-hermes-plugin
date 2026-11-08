@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import os
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
@@ -34,8 +35,14 @@ class CalendarService:
 
     # -- calendars ---------------------------------------------------------
 
-    async def list_calendars(self) -> List[Calendar]:
-        return await self._repo.list_calendars()
+    async def list_calendars(self, agent_name: Optional[str] = None) -> List[Calendar]:
+        calendars = await self._repo.list_calendars()
+        target_agent = agent_name or os.environ.get("HERMES_PROFILE") or os.environ.get("HERMES_PROFILE_ID")
+        if target_agent and target_agent != "default":
+            # Multi-profile scoping: show unassigned/shared calendars + calendars linked to this agent
+            scoped = [c for c in calendars if not c.agents or target_agent in c.agents]
+            return scoped if scoped else calendars
+        return calendars
 
     async def create_calendar(self, name: str, description: str = "") -> Calendar:
         name = (name or "").strip()
